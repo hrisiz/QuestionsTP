@@ -1,3 +1,27 @@
-Title: Generate Test
-Description: You can choose how many test to generate and click to generate them.
-===========
+1)
+  Title: Generate Test
+  Description: You can choose how many test to generate and click to generate them.
+2)
+  Title:Generate Answers
+  Description:Start C program to make answers for question.
+3)
+  Title:PDF
+  Description:Generate PDF files
+    Task1: Generate PDF files with test
+    Task2: Generate PDF files with answers
+4)
+  Title:HTML
+  Description:Generate HTML files
+    Task1: Generate HTML files with test
+    Task2: Generate HTML files with answers
+5)
+  Title: Archive
+  Description: Generate Archive files(.ZIP)
+    Task1:Generate ZIP file with PDF files(test)
+    Task2:Generate ZIP file with HTML files(test)
+    Task3:Generate ZIP File with HTML files(answers)
+    Task4:Generate ZIP file with PDF files(answers)
+    Task5:Create ZIP file with all zip files
+6)
+  Title:Download
+  Description:Create a download ZIP file button
