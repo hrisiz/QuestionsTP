@@ -3,7 +3,7 @@
   Description: You can choose how many test to generate and click to generate them.
 2)
   Title:Generate Answers
-  Description:Start C program to make answers for question.
+  Description:Start C program to find answer of question.
 3)
   Title:PDF
   Description:Generate PDF files
