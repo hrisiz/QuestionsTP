@@ -1,0 +1,20 @@
+*{
+  color:white;
+	font-style:italic;
+	font-size:14px;
+	font-family:Verdana,Arial,Sans-serif;
+}
+body{
+  background-color:black;
+}
+header,section,footer{
+  text-align:center;
+}
+input{
+  font-weight:bold;
+  color:black;
+  background-color:red;
+}
+h1{
+  font-size:3em;
+}
