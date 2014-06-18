@@ -1,3 +1,5 @@
 <?php
   $test = new Test();
-  $test->getQuestion(0);
+  $test->generateQuestions();
+  $test->generateAnswers();
+  echo $test->getQuestionAnswer(0);

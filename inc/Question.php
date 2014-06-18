@@ -2,9 +2,12 @@
   class Question{
     private $question;
     private $answer;
-    public function __construct($val){
+    public function setQuestion($val){
       $this->question = $val;
-      $this->answer = new Answer($question);
+      $this->answer = new Answer("Empty(No Answer)");
+    }
+    public function genAnswer(){
+      $this->answer->genAnswer($this);
     }
     public function getAnswer(){
       return $this->answer;
