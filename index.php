@@ -1,3 +1,8 @@
+<?php
+  include "inc/Answer.php";
+  include "inc/Question.php";
+  include "inc/Test.php";
+?>
 <!DOCTYPE html>
 <html>
 	<head>
