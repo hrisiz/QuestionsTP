@@ -6,11 +6,7 @@
       $this->answer = $answer;
     }
     public function genAnswer($question){
-      $code = "#include<stdio.h>
-int main(){
-  ".$question->getQuestion()."
-  return 0;
-}";
+      $code = "#include<stdio.h>\nint main(){\n".$question->getQuestion("Code")."\treturn 0;\n}";
       $retval = 0;
       if(file_put_contents("c/getanswer.c",$code)){
         system("cd c & gcc getanswer.c",$retval);

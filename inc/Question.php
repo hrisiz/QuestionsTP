@@ -12,7 +12,14 @@
     public function getAnswer(){
       return $this->answer;
     }
-    public function getQuestion(){
-      return $this->question;
+    public function getQuestion($type){
+      switch($type){
+        case "HTML":
+          $result = str_replace("\n","<br>",$this->question);
+          break;
+        default:
+          $result = $this->question;
+      }
+      return $result;
     }
   }
