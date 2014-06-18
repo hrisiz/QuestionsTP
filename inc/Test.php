@@ -1,15 +1,12 @@
 <?php
   class Test{
-    public static $questions;
+    private $questions;
     
-    public function __constructor(){
-      setQuestion();
+    public function __construct(){
+      $this->questions = array_fill(0,12,new Question("xaxa"));
     }
-    public function setQuestion(){
-       $this->questions = array_fill(0,12,"xaxa");
-    }
-    public static function getQuestion($number){
-      echo self::$questions[$number];
+    public function getQuestion($number){
+      echo $this->questions[$number]->getQuestion();
     }
     public function generatePDFTests(){
       return 1;

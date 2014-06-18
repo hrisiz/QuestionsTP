@@ -2,14 +2,14 @@
   class Question{
     private $question;
     private $answer;
-    public function __constructor($val){
-      self::$question = $val;
-      self::$answer = new Answer($question);
+    public function __construct($val){
+      $this->question = $val;
+      $this->answer = new Answer($question);
     }
-    public static function getAnswer(){
-      return self::$answer;
+    public function getAnswer(){
+      return $this->answer;
     }
-    public static function getQuestion(){
-      return self::$question;
+    public function getQuestion(){
+      return $this->question;
     }
   }

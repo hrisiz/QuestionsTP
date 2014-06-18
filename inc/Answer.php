@@ -1,24 +1,24 @@
 <?php
   class Answer{
     private $answer;
-    public function __constructor($qustion){
-      self::$answer = genAnswer($qustion);
+    public function __construct($qustion){
+      $this->answer = genAnswer($qustion);
     }
     public function getAnswer(){
-      if(empty(self::$answer)){
+      if(empty($this->answer)){
         throw new Execption("Empty Answer");
       }
-      return self::$answer;
+      return $this->answer;
     }
     public function genAnswer($qustion){
-      if(empty(self::$answer)){
+      if(empty($this->answer)){
         throw new Execption("Empty Answer");
       }
       $code = "
         #include<stdio.h>
         
         int main(){
-          ".self::$qustion."
+          ".$this->qustion."
           return 0;
         }
       ";

@@ -1,3 +1,3 @@
 <?php
   $test = new Test();
-  echo $test->getQuestion(1);
+  $test->getQuestion(0);
