@@ -12,7 +12,7 @@
         system("cd c & gcc getanswer.c",$retval);
         if($retval == 0){
           exec("cd c & a.exe",$retval);
-          $this->answer = $retval[0];
+          $this->answer = $retval;
         }
       } 
     }
