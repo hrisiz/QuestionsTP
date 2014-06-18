@@ -1,17 +1,24 @@
 <?php
-  $test = new Test();
-  $test->generateQuestions();
-  $test->generateAnswers();
-  $counter = 0;
-  foreach($test->getQuestions() as $qustion){
-    $counter++;
-    echo "<div style=\"border:3px solid white\">";
-      // echo"<p>Question $counter:<br>";
-      // echo $qustion->getQuestion("HTML");
-      // echo"</p>";
-      // echo"<p>Answer:";
-      print_r($test->getQuestionAnswer($counter-1));
-      echo $test->getQuestionAnswer($counter-1)[0];
-      // echo"</p>";
-    echo "</div>";
-  }
+  for($j = 1;$j <= $_POST['tests'];$j++){
+    echo"<h2>Test $j</h2>";
+    $test = new Test();
+    $test->generateQuestions();
+    $test->generateAnswers();
+   
+    echo "<table style=\"margin-left:auto;margin-right:auto;\">";
+    for($i=0;$i < count($test->getQuestions());$i+=2){
+        echo"<tr><td style=\"border:2px solid white\">";
+        echo $test->getQuestions()[$i]->getQuestion("HTML");
+        echo"<br>";
+        echo"Answer:";
+        echo $test->getQuestions()[$i]->getAnswer()->getAnswer();
+        echo"</td>";
+        echo"<td style=\"border:2px solid white\">";
+        echo $test->getQuestions()[$i+1]->getQuestion("HTML");
+        echo"<br>";
+        echo"Answer:";
+        echo $test->getQuestions()[$i+1]->getAnswer()->getAnswer();
+        echo"</td></tr>";
+    }
+    echo "</table>";
+  } 
