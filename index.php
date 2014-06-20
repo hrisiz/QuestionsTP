@@ -2,6 +2,7 @@
   include "inc/Answer.php";
   include "inc/Question.php";
   include "inc/Test.php";
+  include "inc/generate_test.php";
 ?>
 <!DOCTYPE html>
 <html>

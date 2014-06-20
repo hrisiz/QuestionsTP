@@ -1,15 +1,18 @@
 <?php
   class Question{
     private $question;
-    private $answer;
-    public function setQuestion($val){
+    private $answer; 
+    public function __construct($val){
       $this->question = $val;
-      $this->answer = new Answer("Empty(No Answer)");
+      $this->answer = new Answer("No Answer");
     }
     public function genAnswer(){
       $this->answer->genAnswer($this);
     }
     public function getAnswer(){
+      if($this->answer->getAnswer() == "No Answer"){
+        return "<input name=\"genAnswer\" />";
+      }
       return $this->answer;
     }
     public function getQuestion($type){
