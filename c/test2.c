@@ -1,52 +1,53 @@
 #include<stdio.h>
 int main(){int a = 0xF0F0;
-int b = 0xF0FF;
-int result = a | (b << 4);
+int b = 0x00FF;
+int result = a | (b << 8);
 printf("result = %X",result);
-int a = 0x00F00000;
-int b = 0x0F0FFF00;
-int result = a | (b << 6);
+int a = 0x00FFFF0F;
+int b = 0x00F0FF0F;
+int result = a | (b << 11);
 printf("result = %X",result);
-	int a = 0x9B87;
-	int b = 0x0BF4;
+	int a = 0x6E9B;
+	int b = 0x290E;
 	int a1 = a | (b << 4);
-	int b1 = a | (b << 4);
+	int b1 = a | (b << 8);
 	int result = a1 & b1;
-	printf("result = %X",result);	int a = 0xCF99;
-	int b = 0xD209;
-	int a1 = a | (b << 3);
+	printf("result = %X",result);	int a = 0xFDB4;
+	int b = 0x3C7F;
+	int a1 = a | (b << 10);
 	int b1 = a | (b << 3);
 	int result = a1 & b1;
-	printf("result = %X",result);	int a = 0x438A;
-	int b = 0x301B;
-	int a1 = a | (b << 7);
-	int b1 = a | (b << 7);
+	printf("result = %X",result);	int a = 0x837A;
+	int b = 0xFC6E;
+	int a1 = a | (b << 6);
+	int b1 = a | (b << 5);
 	int result = a1 ^ b1;
-	printf("result = %X",result);	int a1 = 0x6492;
-	int result = a1 << 9;
-	printf("result = %X",result);	long a = 0xD2E18CD1;
-	long b = 0xF6D4EBEA;
-	int result = (a << 6) ^ (b >> 10);
-	printf("result = %X",result);	long a = 747;
-	long b = 942;
-	int result = (a << 9) ^ (b >> 5);
-	printf("result = %d",result);	long a = 0xE588386A;
+	printf("result = %X",result);	int a1 = 0x7826;
+	int result = a1 << 6;
+	printf("result = %X",result);	long a = 0xFE5D4B35;
+	long b = 0x6DEBD80A;
+	int result = (a << 6) ^ (b >> 5);
+	printf("result = %X",result);	long a = 868;
+	long b = 034;
+	int result = (a << 6) ^ (b >> 3);
+	printf("result = %d",result);	long a = 0xA11B8B05;
 	int result = 0;
-	if(a & (1 << 10))
+	if(a & (1 << 3))
 	result = 1;
 	else
 	result = 2;
-	printf("result = %d",result);	long a = 0xE2BC083D;
+	printf("result = %d",result);	long a = 0x19575353;
 	int result = 0;
 	int result1 = 0;
-	if((result = a & a ^ a | (1 << 12)))
+	if((result = a & a ^ a | (1 << 3)))
 	result1 = 1;
 	else
 	result1 = 2;
-	printf("result = %d,result1 = %X",result,result1);	long a = 570;
-	long b = 555;
-	int result = (a << 3) ^ (b >> 7);
-	printf("result = %d",result);	long a = 795;
-	long b = 603;
-	int result = (a << 7) ^ (b >> 5);
-	printf("result = %d",result);
+	printf("result = %d,result1 = %X",result,result1);	long a = 901;
+	long b = 103;
+	int result = (a << 12) ^ (b >> 7);
+	printf("result = %d",result);	long a = 614;
+	long b = 490;
+	int result = (a << 12) ^ (b >> 3);
+	printf("result = %d",result);return 0;
+}
