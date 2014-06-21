@@ -3,6 +3,7 @@
   include "inc/Question.php";
   include "inc/Test.php";
   include "inc/generate_test.php";
+  include "inc/sql_connect.php";
 ?>
 <!DOCTYPE html>
 <html>
