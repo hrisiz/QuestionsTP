@@ -100,10 +100,10 @@ function generateQuestions(){
   $left = generateShift("Hard");
   $a = generateNumber("Hex","Hard",8);
   $b = generateNumber("Hex","Hard",8);
-  $questions[6] .= "\tlong a = 0x$a;\n";
-  $questions[6] .= "\tlong b = 0x$b;\n";
+  $questions[6] .= "\tlong la = 0x$a;\n";
+  $questions[6] .= "\tlong lb = 0x$b;\n";
   while(($right = generateShift("Hard")) == $left);
-  $questions[6] .= "\tint result = (a << $left) ^ (b >> $right);\n";
+  $questions[6] .= "\tint result = (la << $left) ^ (lb >> $right);\n";
   $questions[6] .= "\tprintf(\"$type\",result);";
   
   $questions[7] = "";
@@ -120,9 +120,9 @@ function generateQuestions(){
   $questions[8] = "";
   $left = generateShift("Hard");
   $a = generateNumber("Hex","Hard",8);
-  $questions[8] .= "\tlong a = 0x$a;\n";
+  $questions[8] .= "\tlong la = 0x$a;\n";
   $questions[8] .= "\tint result = 0;\n";
-  $questions[8] .= "\tif(a & (1 << $left))\n";
+  $questions[8] .= "\tif(la & (1 << $left))\n";
   $questions[8] .= "\tresult = 1;\n";
   $questions[8] .= "\telse\n";
   $questions[8] .= "\tresult = 2;\n";
@@ -132,10 +132,10 @@ function generateQuestions(){
   $type2 = "result1 = %X";
   $left = generateShift("Hard");
   $a = generateNumber("Hex","Hard",8);
-  $questions[9] .= "\tlong a = 0x$a;\n";
+  $questions[9] .= "\tlong la = 0x$a;\n";
   $questions[9] .= "\tint result = 0;\n";
   $questions[9] .= "\tint result1 = 0;\n";
-  $questions[9] .= "\tif((result = a & a ^ a | (1 << $left)))\n";
+  $questions[9] .= "\tif((result = la & la ^ la | (1 << $left)))\n";
   $questions[9] .= "\tresult1 = 1;\n";
   $questions[9] .= "\telse\n";
   $questions[9] .= "\tresult1 = 2;\n";
@@ -145,20 +145,20 @@ function generateQuestions(){
   $left = generateShift("Hard");
   $a = generateNumber("Numbers","Hard",3);
   $b = generateNumber("Numbers","Hard",3);
-  $questions[10] .= "\tlong a = $a;\n";
-  $questions[10] .= "\tlong b = $b;\n";
+  $questions[10] .= "\tlong la = $a;\n";
+  $questions[10] .= "\tlong lb = $b;\n";
   while(($right = generateShift("Hard")) == $left);
-  $questions[10] .= "\tint result = (a << $left) ^ (b >> $right);\n";
+  $questions[10] .= "\tint result = (la << $left) ^ (lb >> $right);\n";
   $questions[10] .= "\tprintf(\"$type\",result);";
   
   $questions[11] = "";
   $left = generateShift("Hard");
   $a = generateNumber("Numbers","Hard",3);
   $b = generateNumber("Numbers","Hard",3);
-  $questions[11] .= "\tlong a = $a;\n";
-  $questions[11] .= "\tlong b = $b;\n";
+  $questions[11] .= "\tlong la = $a;\n";
+  $questions[11] .= "\tlong lb = $b;\n";
   while(($right = generateShift("Hard")) == $left);
-  $questions[11] .= "\tint result = (a << $left) ^ (b >> $right);\n";
+  $questions[11] .= "\tint result = (la << $left) ^ (lb >> $right);\n";
   $questions[11] .= "\tprintf(\"$type\",result);";
   for($i=0;$i<12;$i++){
     $questions[$i] = new Question($questions[$i]);

@@ -19,8 +19,29 @@
         global $db;
         $this->id=$id;
         $questions = $db->query("Select Question From questions Where TestID=".$this->id."")->fetchAll();
+        $used_variables = array();
         foreach($questions as $question){
-          array_push($this->questions, new Question($question['Question']));
+          $ready_question = "";
+          foreach(explode("\n",$question['Question']) as $quetion_row){
+            if(preg_match('/int /',$quetion_row,$matches,PREG_OFFSET_CAPTURE) || preg_match('/(\b|\w)long /',$quetion_row,$matches,PREG_OFFSET_CAPTURE)){
+              $variable = explode("=",$quetion_row);
+              if($matches[0][0] == "int "){
+                $shift = 4;
+              }else{
+                $shift = 5;
+              }
+              $variable = substr($variable[0],$matches[0][1]+$shift,-1);
+              if(in_array($variable,$used_variables)){
+                $ready_question .= substr($quetion_row,$matches[0][1]+$shift,-1)."\n";
+              }else{
+                array_push($used_variables,$variable);
+                $ready_question .= $quetion_row."\n";
+              }
+            }else{
+              $ready_question .= $quetion_row."\n";
+            }
+          }
+          array_push($this->questions, new Question($ready_question));
         }
       }
     }
@@ -29,7 +50,9 @@
       file_put_contents("c/test".$this->id.".c",$code);
       foreach($this->questions as $question){
         file_put_contents("c/test".$this->id.".c",$question->getQuestion(),FILE_APPEND);
-      }
+      } 
+      $code = "return 0;\n}";
+      file_put_contents("c/test".$this->id.".c",$code,FILE_APPEND);
     }
     public function getQuestions(){
       return $this->questions;

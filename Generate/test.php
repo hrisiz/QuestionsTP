@@ -1,10 +1,10 @@
 <?php
   for($j = 1;$j <= $_POST['tests'];$j++){
     echo"<h2>Test $j</h2>";
-    $test[$j] = new Test(2);
+    $test[$j] = new Test(1);
     // $test[$j] = new Test();
     // $test[$j]->generateQuestions();
-    // $test[$j]->generateAnswers();
+    $test[$j]->generateAnswers();
    
     echo "<table style=\"margin-left:auto;margin-right:auto;\">";
     for($i=0;$i < count($test[$j]->getQuestions());$i+=2){
