@@ -1,8 +1,8 @@
 1)
-  Title: Generate Test
+  Title: Generate Test -Ready
   Description: You can choose how many test to generate and click to generate them.
 2)
-  Title:Generate Answers
+  Title:Generate Answers -Ready
   Description:Start C program to find answer of question.
 3)
   Title:PDF
