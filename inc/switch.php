@@ -22,4 +22,5 @@
 	}else{
 		include "Pages/form.php";
 	}
+  include "Pages/view.php";
 ?>

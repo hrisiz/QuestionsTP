@@ -4,6 +4,7 @@
   include "inc/Test.php";
   include "inc/generate_test.php";
   include "inc/sql_connect.php";
+  set_time_limit(10000000);
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,7 +20,7 @@
       <h1>Generate Test</h1>
     </header>
     <section>
-      <?php include "inc/switch.php"?>
+      <?php include "inc/switch.php";?>
     </section>
     <footer>
 			<p>GrizisMu © All Rights Reserved</p>

@@ -59,14 +59,24 @@ table>tbody>tr>td>ul.options{
 table>tbody>tr>td:hover>ul.options{
   display:block;
   position:absolute;
+  margin:0px;
+  margin-left:210px;
+  margin-top:-50px;
   list-style:none;
   text-align:center;
-  margin:0px;
   padding:0px;
   overflow:hidden;
   background-color:black;
 }
 button{
+  cursor:pointer;
+  background-color:grey;
+}
+button:hover{
+  cursor:pointer;
+  background-color:red;
+}
+li>a>button{
   cursor:pointer;
   background-color:grey;
 }

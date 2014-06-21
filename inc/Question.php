@@ -32,7 +32,7 @@
       $ex = explode("printf(\"",$this->question);
       $ex = explode(')',$ex[1]);
       $ex = explode("\",",$ex[0]);
-      $end .= preg_replace('/%X|%d/','?',$ex[0]);
+      $end .= preg_replace("/((%X|%d)\\\\n|(%X|%d))/",'.....................',$ex[0]);
       $end = preg_replace('/,/',"\n",$end);
       preg_match('/printf/',$this->question,$matches,PREG_OFFSET_CAPTURE);
       $ready = $end."\n";
