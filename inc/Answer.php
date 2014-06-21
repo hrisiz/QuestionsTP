@@ -5,14 +5,8 @@
     public function __construct($answer){
       $this->answer = $answer;
     }
-    public function genAnswer($question){
-      $code = "#include<stdio.h>\nint main(){\n".$question->getQuestion("Code")."\treturn 0;\n}";
-      $retval = 0;
-      if(file_put_contents("c/getanswer.c",$code)){
-        system("cd c & gcc getanswer.c",$retval);
-        exec("cd c & a.exe",$retval);
-        $this->answer = $retval[0];
-      } 
+    public function setAnswer($answer){
+      $this->answer = $answer;
     }
     public function getAnswer(){
       return $this->answer;
