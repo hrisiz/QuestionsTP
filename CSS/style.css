@@ -18,3 +18,55 @@ input{
 h1{
   font-size:3em;
 }
+table{
+  margin-left:auto;
+  margin-right:auto;
+}
+table>tbody>tr>td,table>thead>tr>th{
+  text-align:left;
+  vertical-align:top;
+  border:2px solid white;
+}
+table>tbody>tr>td>table.test{
+  display:none;
+}
+table>tbody>tr>td:hover>table.test{
+  display:block;
+  position:absolute;
+  margin-left:-300px;
+}
+table>tbody>tr>td:last-child{
+  width:210px;
+}
+table>tbody>tr>td:hover>table.test>tbody>tr>td{
+  background-color:black;
+  width:350px;
+}
+table>tbody>tr>td:hover>table.test>tbody>tr>td>p:first-child{
+  float:left;
+  white-space: nowrap;
+  width:50%;
+}
+table>tbody>tr>td:hover>table.test>tbody>tr>td>p:nth-child(2){
+  float:right;
+  padding-right:5px;
+  white-space: nowrap;
+}
+table>tbody>tr>td>ul.options{
+  display:none;
+  width:210px;
+}
+table>tbody>tr>td:hover>ul.options{
+  display:block;
+  position:absolute;
+  list-style:none;
+  text-align:center;
+  margin:0px;
+  padding:0px;
+  overflow:hidden;
+  background-color:black;
+}
+button{
+  cursor:pointer;
+  background-color:grey;
+}

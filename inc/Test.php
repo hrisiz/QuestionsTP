@@ -11,18 +11,22 @@
       $this->id = $id[0];
       foreach($this->questions as $question){
         $db->exec("INSERT INTO questions(`TestID`, `Question`) VALUES (".$this->id.",'".$question->getQuestion()."')");
+        $question_id = $db->query("Select MAX(ID) From questions")->fetch();
+        $question->setId($question_id[0]);
       }
-      // $db->commit();
+      $db->commit();
     }
     public function __construct($id){
       if(isset($id)){
         global $db;
         $this->id=$id;
-        $questions = $db->query("Select Question From questions Where TestID=".$this->id."")->fetchAll();
+        $questions = $db->query("Select ID,Question From questions Where TestID=".$this->id."")->fetchAll();
         
         foreach($questions as $question){
-          array_push($this->questions, new Question($question['Question']));
+          array_push($this->questions, new Question($question['Question'],$question['ID']));
         }
+      }else{
+        $this->generateQuestions();
       }
     }
     private function generateCFile(){
@@ -58,17 +62,32 @@
       file_put_contents("c/test".$this->id.".c",$code,FILE_APPEND);
     }
     public function generateAnswers(){
+      global $db;
       $this->generateCFile();
       $retval;
       system("cd c & gcc test".$this->id.".c -o test".$this->id."",$retval);
       exec("cd c & test".$this->id.".exe",$retval);
       $counter = 0;
+      $db->beginTransaction();
       foreach($retval as $answer){
-        $this->questions[$counter++]->setAnswer($answer);
+        echo "";
+        $this->questions[$counter]->setAnswer($answer);
+        $answer_db = $db->query("Select * From Answers  Where QuestionID=".$this->questions[$counter]->getID()." AND TestID=".$this->id."")->fetchAll();
+        if(count($answer_db) > 0){
+          $answer_db = $answer_db[0];
+          $db->exec("Update Answers Set Answer='".$this->questions[$counter]->getAnswer()->getAnswer()."' Where ID=".$answer_db['ID']."");
+        }else{
+          $db->exec("Insert Into Answers(`QuestionID`,`TestID`,`Answer`)values(".$this->questions[$counter]->getID().",".$this->id.",'".$this->questions[$counter]->getAnswer()->getAnswer()."')");
+        }
+        $counter++;
       }
+      $db->commit();
     }
     public function getQuestions(){
       return $this->questions;
+    }
+    public function getID(){
+      return $this->id;
     }
     public function getQuestionAnswer($number){
       return $this->questions[$number]->getAnswer()->getAnswer();
