@@ -3,4 +3,4 @@
     $test[$j] = new Test();
     // $test[$j]->generateAnswers();
   }
-  header("Location: ?");
+  header("Location: ?page=Pages_Home");

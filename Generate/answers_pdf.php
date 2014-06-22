@@ -1,8 +1,8 @@
 <?php
   $test = new Test($_GET['test_id']);
-  $file = "HTML/test".$test->getID().".html";
+  $file = "PDF/test_answers".$test->getID().".pdf";
   if(!file_exists($file)){
-    $test->generateHTMLTest($file);
+    $test->generatePDFAnswers($file);
   }
   if (file_exists($file)) {
     header('Content-Description: File Transfer');

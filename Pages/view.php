@@ -1,10 +1,16 @@
-<a href="?page=Generate_All-With-All-Archive"><button>Download All Archives in Archive</button></a>
+<a href="?page=Generate_Archive-All"><button>Download All Archives in Archive</button></a>
 <table>
 <thead>
   <tr><th>ID</th><th>View Test</th><th>Answers</th><th>Download</th></tr>
 </thead>
 <?php 
-  $rows = $db->query("Select * From tests order by ID desc")->fetchAll();
+  $count_on_page = 30;
+  $page = $_GET['page_number'];
+  if($page < 0){
+    $page = 0;
+  }
+  $start = $page*$count_on_page;
+  $rows = $db->query("Select * From tests order by ID desc LIMIT $start,$count_on_page")->fetchAll();
   for($j = 1;$j <= count($rows);$j++){ 
     $test[$j] = new Test($rows[$j-1]['ID']);
 ?>
@@ -35,26 +41,20 @@
       </td>
       <td>
         <a href="?page=Generate_Answers&test_id=<?=$test[$j]->getID()?>"><button>Generate Answers</button></a>
-        <!--<ul class="options">
-          <li><a href="?page=Generate_Questions-PDF&test_id=<?=$test[$j]->getID()?>"><button>Download Questions PDF File</button></a></li>
-          <li><a href="?page=Generate_Questions-HTML&test_id=<?=$test[$j]->getID()?>"><button>Download Questions HTML File</button></a></li>
-          <li><a href="?page=Generate_Questions-Archive&test_id=<?=$test[$j]->getID()?>"><button>Download Questions Archive</button></a></li>
-          <li><a href="?page=Generate_Answers-PDF&test_id=<?=$test[$j]->getID()?>"><button>Download Answers PDF File</button></a></li>
-          <li><a href="?page=Generate_Answers-HTML&test_id=<?=$test[$j]->getID()?>"><button>Download Answers HTML File</button></a></li>
-          <li><a href="?page=Generate_Answers-Archive&test_id=<?=$test[$j]->getID()?>"><button>Download Answers Archive</button></a></li>
-        </ul>-->
       </td>
       <td>
-        <a href="?page=Generate_All-Archive&test_id=<?=$test[$j]->getID()?>"><button>Download All in Archive File</button></a>
+        <a href="?page=Generate_Archive&test_id=<?=$test[$j]->getID()?>"><button>Download All in Archive File</button></a>
         <ul class="options">
           <li><a href="?page=Generate_Questions-PDF&test_id=<?=$test[$j]->getID()?>"><button>Download Questions PDF File</button></a></li>
           <li><a href="?page=Generate_Questions-HTML&test_id=<?=$test[$j]->getID()?>"><button>Download Questions HTML File</button></a></li>
-          <li><a href="?page=Generate_Questions-Archive&test_id=<?=$test[$j]->getID()?>"><button>Download Questions Archive</button></a></li>
           <li><a href="?page=Generate_Answers-PDF&test_id=<?=$test[$j]->getID()?>"><button>Download Answers PDF File</button></a></li>
           <li><a href="?page=Generate_Answers-HTML&test_id=<?=$test[$j]->getID()?>"><button>Download Answers HTML File</button></a></li>
-          <li><a href="?page=Generate_Answers-Archive&test_id=<?=$test[$j]->getID()?>"><button>Download Answers Archive</button></a></li>
         </ul>
       </td>
     </tr>
   <?php } ?> 
     </table>
+    <div class="page_move">
+      <a href="?page=<?=$_GET['page']?>&page_number=<?=($page-1)?>"><< Prev </a>
+      <a href="?page=<?=$_GET['page']?>&page_number=<?=($page+1)?>">Next>> </a>
+    </div>

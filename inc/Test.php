@@ -111,34 +111,66 @@
     public function getQuestionAnswer($number){
       return $this->questions[$number]->getAnswer()->getAnswer();
     }
-    public function generatePDFTest(){
-      return 1;
+    public function generatePDFTest($file){
+      if(!file_exists($file)){
+        $pdf = new FPDF();
+        $pdf->SetFont('Arial','',14);
+        $pdf->AddPage();
+        for($i=0;$i < count($this->questions);$i+=2){
+          $question[0] = explode("\n",$this->questions[$i]->getQuestion("PDF"));
+          $question[1] = explode("\n",$this->questions[$i+1]->getQuestion("PDF"));
+          $counter = 0;
+          while($counter < count($question[0]) && $counter < count($question[1])){
+            $pdf->Cell(120,5,$question[0][$counter]);
+            $pdf->Cell(120,5,$question[0][$counter]);
+            $pdf->Ln();
+            $counter++;
+          }
+          $pdf->Ln();
+          $pdf->Ln();
+        }
+        $pdf->Output($file,'F');
+      }
     }
-    public function generatePDFAnswers(){
-      return 1;
+    public function generatePDFAnswers($file){
+      if(!file_exists($file)){
+        $pdf = new FPDF();
+        $pdf->SetFont('Arial','',14);
+        $pdf->AddPage();
+        foreach($this->questions as $question){
+          $pdf->Cell(120,5,$question->getAnswer()->getAnswer());
+          $pdf->Ln();
+          $pdf->Ln();
+        }
+        $pdf->Output($file,'F');
+      }
     }
     public function generateHTMLTest($file){
-      $content = file_get_contents("HTML/template.html");
-      preg_match('/<table>/',$content,$matches,PREG_OFFSET_CAPTURE);
-      $start = substr($content,0,$matches[0][1]+7);
-      $end = substr($content,$matches[0][1]+7,-1);
-      $questions = "";
-      for($i=0;$i < count($this->questions);$i+=2){
-        $questions .= "\n\t\t\t<tr>\n\t\t\t\t<td><br>\n\t\t\t\t".$this->questions[$i]->getQuestion("HTML")."\n\t\t\t\t</td>\n\t\t\t\n\t\t\t\t<td><br>\n\t\t\t\t".$this->questions[$i+1]->getQuestion("HTML")."\n\t\t\t\t</td>\n\t\t\t</tr>";
+      if(!file_exists($file)){
+        $content = file_get_contents("HTML/template.html");
+        preg_match('/<table>/',$content,$matches,PREG_OFFSET_CAPTURE);
+        $start = substr($content,0,$matches[0][1]+7);
+        $end = substr($content,$matches[0][1]+7,-1);
+        $questions = "";
+        for($i=0;$i < count($this->questions);$i+=2){
+          $questions .= "\n\t\t\t<tr>\n\t\t\t\t<td><br>\n\t\t\t\t".$this->questions[$i]->getQuestion("HTML")."\n\t\t\t\t</td>\n\t\t\t\n\t\t\t\t<td><br>\n\t\t\t\t".$this->questions[$i+1]->getQuestion("HTML")."\n\t\t\t\t</td>\n\t\t\t</tr>";
+        }
+        file_put_contents($file,$start.$questions.$end);
       }
-      file_put_contents($file,$start.$questions.$end);
     }
     public function generateHTMLAnswers($file){
-      $this->setAnswers();
-      $content = file_get_contents("HTML/template_answers.html");
-      preg_match('/<body>/',$content,$matches,PREG_OFFSET_CAPTURE);
-      $start = substr($content,0,$matches[0][1]+6);
-      $end = substr($content,$matches[0][1]+6,-1);
-      $questions = "";
-      foreach($this->questions as $question){
-        $questions .= "\n\t\t<p>".$question->getAnswer()->getAnswer("HTML")."</p>";
+      if(!file_exists($file)){
+        $this->setAnswers();
+        $content = file_get_contents("HTML/template_answers.html");
+        preg_match('/<body>/',$content,$matches,PREG_OFFSET_CAPTURE);
+        $start = substr($content,0,$matches[0][1]+6);
+        $end = substr($content,$matches[0][1]+6,-1);
+        $questions = "";
+        foreach($this->questions as $question){
+          $questions .= "\n\t\t<p>".$question->getAnswer()->getAnswer("HTML")."</p>";
+        }
+        file_put_contents($file,$start.$questions.$end);
       }
-      file_put_contents($file,$start.$questions.$end);
     }
     public function clearTest(){
       $db->beginTransaction();

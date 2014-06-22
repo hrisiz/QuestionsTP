@@ -80,3 +80,15 @@ li>a>button{
   cursor:pointer;
   background-color:grey;
 }
+div.page_move{
+  overflow:hidden;
+  width:500px;
+  margin-left:auto;
+  margin-right:auto;
+}
+div.page_move>a:first-child{
+  float:left;
+}
+div.page_move>a:last-child{
+  float:right;
+}

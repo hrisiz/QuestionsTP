@@ -1,12 +1,9 @@
 <?php
   if(empty($_GET['page']) && !isset($_GET['page'])){
-    $page = "Pages_Generate-Tests";
+    $page = "Pages_Home";
   }else{
     $page = $_GET['page'];
   }
-  // $name = explode("_",$page);
-  // $name = str_replace("-"," ",array_slice($name,-1)[0]);
-  // echo"<h2>$name</h2>";
 	if(!empty($page) && isset($page)){
 		$page = str_replace("_","/",$page);
 		$page = str_replace("-","_",$page);
@@ -20,7 +17,7 @@
 			";
 		}
 	}else{
-		include "Pages/form.php";
+		include "Pages/home.php";
 	}
   include "Pages/view.php";
 ?>

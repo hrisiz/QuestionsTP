@@ -4,6 +4,7 @@
   include "inc/Test.php";
   include "inc/generate_test.php";
   include "inc/sql_connect.php";
+  include "inc/fpdf/fpdf.php";
   set_time_limit(10000000);
 ?>
 <!DOCTYPE html>

@@ -1,9 +1,7 @@
 <?php
   $test = new Test($_GET['test_id']);
   $file = "HTML/test_answers".$test->getID().".html";
-  if(!file_exists($file)){
-    $test->generateHTMLAnswers($file);
-  }
+  $test->generateHTMLAnswers($file);
   if (file_exists($file)) {
     header('Content-Description: File Transfer');
     header('Content-Type: application/octet-stream');
