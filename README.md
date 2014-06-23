@@ -1,5 +1,5 @@
 Install:
-  1)Install mysql.
+  1)Install mysql.\n
   2)Run Install.sql in your DB.
   3)Install php 5.5 or newer and apache for it.
   4)Run local server.
