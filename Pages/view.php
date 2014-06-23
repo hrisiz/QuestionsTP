@@ -1,4 +1,5 @@
 <a href="?page=Generate_Archive-All"><button>Download All Archives in Archive</button></a>
+<a onclick='if(!confirm("You will delete all tests DB.\n Are you sure ?")){return false;}' href="?page=Modules_Clear-All"><button>Clear All</button></a>
 <table>
 <thead>
   <tr><th>ID</th><th>View Test</th><th>Answers</th><th>Download</th></tr>
@@ -40,7 +41,8 @@
         </table>
       </td>
       <td>
-        <a href="?page=Generate_Answers&test_id=<?=$test[$j]->getID()?>"><button>Generate Answers</button></a>
+        <a href="?page=Generate_Answers&test_id=<?=$test[$j]->getID()?>"><button>Generate Answers</button></a><br>
+        <a href="?page=Modules_Clear-Test&test_id=<?=$test[$j]->getID()?>"><button style="width:100%">Remove</button></a>
       </td>
       <td>
         <a href="?page=Generate_Archive&test_id=<?=$test[$j]->getID()?>"><button>Download All in Archive File</button></a>

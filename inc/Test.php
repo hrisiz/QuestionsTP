@@ -173,10 +173,25 @@
       }
     }
     public function clearTest(){
+      global $db;
       $db->beginTransaction();
       $db->exec("Delete From tests where ID='".$this->id."'");
       $db->exec("Delete From questions where TestID='".$this->id."'");
-      $db->exec("Delete From questions where TestID='".$this->id."'");
+      $db->exec("Delete From answers where TestID='".$this->id."'");
+      $db->exec("alter table questions AUTO_INCREMENT=1");
+      $db->exec("alter table tests AUTO_INCREMENT=1");
+      $db->exec("alter table answers AUTO_INCREMENT=1");
+      $files = array(
+        "Archive/all_archives.zip",
+        "Archive/test".$this->id.".zip",
+        "PDF/test".$this->id.".pdf",
+        "PDF/test_answers".$this->id.".pdf",
+        "HTML/test".$this->id.".html",
+        "HTML/test_answers".$this->id.".html"
+        );
+      foreach($files as $file)
+        if(file_exists($file))
+          unlink($file);
       $db->commit();
     }
   }
