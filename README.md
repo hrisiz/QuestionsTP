@@ -15,3 +15,6 @@ Run:
   1)Open localhost
   
   2)Use the program :D
+
+
+Fast test: http://78.83.158.151:8080/QuestionsTP/
